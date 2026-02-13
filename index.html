@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>FELIZ SAN VALENTÍN 💖</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Press Start 2P',cursive;
+  background:#ffc0cb;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+/* ===== GENERAL ===== */
+.screen{ text-align:center; position:relative; z-index:3 }
+
+.title{
+  font-size:16px;
+  color:#ff4d88;
+  margin-bottom:35px;
+  text-shadow:2px 2px #fff;
+}
+
+/* ===== GIF BLOQUEADO ===== */
+.lock-gif{
+  width:300px;
+  max-width:90vw;
+  margin:0 auto 25px;
+  display:block;
+  background:#ff9acb;
+  padding:12px;
+  border:5px solid #ff4d88;
+  box-shadow:8px 8px #ff4d88;
+  border-radius:8px;
+  animation:softPulse 3.5s ease-in-out infinite;
+}
+
+@keyframes softPulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.03)}
+  100%{transform:scale(1)}
+}
+
+@keyframes collagePulse{
+  0%{transform:scale(1) rotate(var(--rot))}
+  50%{transform:scale(1.08) rotate(var(--rot))}
+  100%{transform:scale(1) rotate(var(--rot))}
+}
+
+/* ===== CANDADO ===== */
+.lock-box{
+  background:#ff9acb;
+  border:5px solid #ff4d88;
+  padding:30px;
+  border-radius:10px;
+  box-shadow:8px 8px #ff4d88;
+  width:320px;
+}
+
+.lock-icon{font-size:64px;margin-bottom:20px}
+
+.code-input{
+  width:100%;
+  font-family:inherit;
+  font-size:20px;
+  padding:15px;
+  text-align:center;
+  border:4px solid #ff4d88;
+  background:#ffe0ec;
+  color:#ff4d88;
+  letter-spacing:4px;
+  outline:none;
+}
+
+.unlock-btn{
+  margin-top:20px;
+  padding:15px;
+  font-size:12px;
+  background:#ffb6d9;
+  border:4px solid #ff4d88;
+  color:#ff4d88;
+  cursor:pointer;
+  box-shadow:5px 5px #ff4d88;
+}
+
+.unlock-btn:active{
+  transform:translate(3px,3px);
+  box-shadow:2px 2px #ff4d88;
+}
+
+.error{
+  margin-top:15px;
+  font-size:10px;
+  color:#d6004a;
+  display:none;
+}
+
+/* ===== DESBLOQUEADO ===== */
+.unlocked{ display:none; animation:fadeIn 1s forwards }
+
+.unlocked h1{
+  font-size:20px;
+  color:#ff4d88;
+  margin-bottom:20px;
+  text-shadow:2px 2px #fff;
+}
+
+.heart{
+  font-size:72px;
+  margin-bottom:25px;
+  animation:pulse 1.5s infinite;
+}
+
+.love-message{
+  margin-top:25px;
+  font-size:12px;
+  color:#ffffff;
+  line-height:2.5;
+  text-shadow:2px 2px #ff4d88;
+  max-width:460px;
+  margin-left:auto;
+  margin-right:auto;
+  animation:fadeIn 2s ease forwards;
+}
+
+/* ===== VIDEO ===== */
+.video-frame{
+  width:340px;        /* ⬅️ tamaño anterior / equilibrado */
+  height:380px;
+  margin:30px auto;
+  padding:14px;
+  background:#ff9acb;
+  border:6px solid #ff4d88;
+  box-shadow:10px 10px #ff4d88;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.video-frame video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border:5px solid #ffe0ec;
+}
+
+/* ===== COLLAGE DESORDENADO ===== */
+.photo-collage{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  display:none;
+  z-index:1;
+  animation:fadeIn 1.5s forwards;
+}
+
+.collage-img{
+  position:absolute;
+  opacity:0.75;
+  filter:blur(0.5px);
+  image-rendering:pixelated;
+  border:4px solid #ffe0ec;
+  box-shadow:6px 6px #ff4d88;
+}
+
+.img1{
+  width:210px;
+  top:7%;
+  left:5%;
+  --rot:-6deg;
+  transform:rotate(-6deg);
+  animation:collagePulse 8s ease-in-out infinite;
+}
+
+.img2{
+  width:250px;
+  top:9%;
+  right:7%;
+  --rot:5deg;
+  transform:rotate(5deg);
+  animation:collagePulse 10s ease-in-out infinite;
+}
+
+.img3{
+  width:190px;
+  bottom:9%;
+  left:11%;
+  --rot:4deg;
+  transform:rotate(4deg);
+  animation:collagePulse 9s ease-in-out infinite;
+}
+
+.img4{
+  width:230px;
+  bottom:7%;
+  right:9%;
+  --rot:-5deg;
+  transform:rotate(-5deg);
+  animation:collagePulse 11s ease-in-out infinite;
+}
+
+@media (max-width:600px){
+  .img1{width:150px}
+  .img2{width:170px}
+  .img3{width:140px}
+  .img4{width:160px}
+  .video-frame{
+    width:78vw;     /* más angosto */
+    height:38vh;    /* ⬅️ clave: baja fuerte el alto */
+    margin:20px auto;
+  }
+}
+
+/* ===== EFECTOS ===== */
+.pixel-heart{
+  position:absolute;
+  font-size:36px;
+  animation:floatUp 7s linear forwards;
+  opacity:0.85;
+  z-index:4;
+}
+
+.pixel-message{
+  position:absolute;
+  bottom:-40px;
+  font-size:16px;
+  color:#ff4d88;
+  background:rgba(255,224,236,0.85);
+  padding:10px 14px;
+  border:3px solid #ff4d88;
+  box-shadow:4px 4px #ff4d88;
+  animation:floatMessage 10s linear forwards;
+  z-index:4;
+  white-space:nowrap;
+}
+
+.lock-icon-img{
+  width:150px;
+  margin-bottom:20px;
+  image-rendering:pixelated;
+  animation:softPulse 3.5s ease-in-out infinite;
+}
+
+.music-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  font-size:11px;
+  padding:12px;
+  background:#ff9acb;
+  border:4px solid #ff4d88;
+  color:#ff4d88;
+  cursor:pointer;
+  z-index:5;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.25)}
+  100%{transform:scale(1)}
+}
+@keyframes floatUp{
+  from{transform:translateY(100vh)}
+  to{transform:translateY(-20vh)}
+}
+@keyframes floatMessage{
+  from{transform:translateY(0);opacity:0}
+  10%{opacity:1}
+  to{transform:translateY(-120vh);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop preload="auto"></audio>
+<audio id="clickSound" preload="auto"><source src="click.wav"></audio>
+
+<!-- ❌ Error 8-bits -->
+<audio id="errorSound" preload="auto">
+  <source src="error.wav" type="audio/wav">
+</audio>
+
+
+<!-- Collage -->
+<div class="photo-collage" id="collage">
+  <img src="monito1.png" class="collage-img img1">
+  <img src="monito2.png" class="collage-img img2">
+  <img src="monito3.png" class="collage-img img3">
+  <img src="monito4.png" class="collage-img img4">
+</div>
+
+<!-- Pantalla bloqueada -->
+<div class="screen" id="lockedScreen">
+  <img src="pinguinos.gif" class="lock-gif">
+  <div class="title">INGRESA EL CÓDIGO 💗</div>
+  <div class="lock-box">
+    <img src="candado.png" alt="Candado" class="lock-icon-img">
+    <input id="code" class="code-input" maxlength="4" placeholder="••••">
+    <button id="unlockBtn" class="unlock-btn">ABRIR</button>
+    <div class="error" id="error">CÓDIGO INCORRECTO 😵‍💫​</div>
+  </div>
+</div>
+
+<!-- Desbloqueado -->
+<div class="screen unlocked" id="unlockedScreen">
+  <h1>FELIZ SAN VALENTÍN 💕</h1>
+  <div class="heart">💖</div>
+
+  <div class="video-frame">
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="main_monito.png"
+      style="width:100%; height:100%; object-fit:cover;">
+      <source src="video.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <p class="love-message">
+	El amor no reconoce de barreras, salta obstaculos, brinca vallas
+	penetra paredes para llegar a su destino y ese destino eres tu.
+	<br><br> <b>
+		No olvides revisar tu celular hoy, contesta todas las llamadas
+		y responde todos los mensajes. Ya que uno sera especial</b><br><br>
+    Te amo más de lo que puedas imaginar, mi preciosa 💕
+  </p>
+</div>
+
+<!--<button class="music-btn" id="musicBtn">♫ MÚSICA</button>-->
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const correctCode="7";
+  const music=document.getElementById("music");
+  const clickSound=document.getElementById("clickSound");
+  const errorSound = document.getElementById("errorSound");
+
+    music.src="music.mp3";
+  music.volume=0;
+
+  const unlockBtn=document.getElementById("unlockBtn");
+  const input=document.getElementById("code");
+  const error=document.getElementById("error");
+  const collage=document.getElementById("collage");
+  const locked=document.getElementById("lockedScreen");
+  const unlocked=document.getElementById("unlockedScreen");
+  const musicBtn=document.getElementById("musicBtn");
+
+  unlockBtn.addEventListener("click",()=>{
+    if(input.value===correctCode){
+      clickSound.play().catch(()=>{});
+      locked.style.display="none";
+      unlocked.style.display="block";
+      collage.style.display="block";
+      music.play().then(()=>fadeInMusic()).catch(()=>{});
+      createHearts();
+      createMessages();
+    }else{
+      if (navigator.vibrate) {
+        navigator.vibrate(200);
+      }
+      error.style.display = "block";
+
+      errorSound.currentTime = 0;
+      errorSound.play().catch(()=>{});
+
+      setTimeout(() => {
+        error.style.display = "none";
+      }, 1500);
+    }
+  });
+
+  musicBtn.addEventListener("click",()=>{
+    music.paused?music.play():music.pause();
+  });
+
+  function fadeInMusic(){
+    let v=0;
+    const i=setInterval(()=>{
+      if(v<1){v+=0.02;music.volume=v}else clearInterval(i);
+    },100);
+  }
+
+  function createHearts(){
+    setInterval(()=>{
+      const h=document.createElement("div");
+      h.className="pixel-heart";
+      h.innerText="💗";
+      h.style.left=Math.random()*100+"vw";
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),7000);
+    },400);
+  }
+
+  function createMessages(){
+    const msgs=["Pienso en ti","También te quiero","Me enamoré de ti"];
+    let i=0;
+    setInterval(()=>{
+      const m=document.createElement("div");
+      m.className="pixel-message";
+      m.innerText=msgs[i];
+      m.style.left=Math.random()*70+15+"vw";
+      document.body.appendChild(m);
+      i=(i+1)%msgs.length;
+      setTimeout(()=>m.remove(),10000);
+    },3000);
+  }
+
+});
+</script>
+
+</body>
+</html>
